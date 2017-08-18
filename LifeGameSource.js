@@ -3,6 +3,7 @@ var ctx = canvas.getContext('2d');
 
 
 var model = {
+    timer : 0,
     cageArr : [],
     cageArrStartGame : [],
 
@@ -66,6 +67,9 @@ var controller = {
         model.stepCount++;
         document.getElementById("stepCount").innerHTML = model.stepCount.toString();
         model.timer = setTimeout(controller.startGame, 300);
+    },
+    stopTimer : function () {
+        clearTimeout(model.timer);
     }
 };
 
@@ -98,8 +102,10 @@ var view = {
         },
 
         event: function () {
-            var el = document.getElementById("start");
-            el.onclick = controller.startGame;
+            var startButton = document.getElementById("start");
+            startButton.onclick = controller.startGame;
+            var pauseButton = document.getElementById("pause");
+            pauseButton.onclick = controller.stopTimer;
         }
 
     };
