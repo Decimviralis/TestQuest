@@ -39,7 +39,11 @@ var controller = {
         model.y = event.offsetY;
         model.x = Math.floor(model.x/10);
         model.y = Math.floor(model.y/10);
-        model.cageArr[model.y][model.x] = 1;
+        if (model.cageArr[model.y][model.x] == 0) {
+            model.cageArr[model.y][model.x] = 1;
+        } else {
+            model.cageArr[model.y][model.x] = 0;
+        }
         view.drawPlayMap();
     },
     initPlayMap: function() {
@@ -80,6 +84,9 @@ var view = {
             for (var j = 0; j < model.horizontalCellsCount; j++) {
                 if (model.cageArr[i][j] === 1) {
                     ctx.fillRect(j * 10, i * 10, 10, 10);
+                    ctx.stroke();
+                } else {
+                    ctx.clearRect(j * 10, i * 10, 10, 10);
                     ctx.stroke();
                 }
             }
