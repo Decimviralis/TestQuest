@@ -39,7 +39,7 @@ var controller = {
         model.y = event.offsetY;
         model.x = Math.floor(model.x/10);
         model.y = Math.floor(model.y/10);
-        if (model.cageArr[model.y][model.x] == 0) {
+        if (model.cageArr[model.y][model.x] === 0) {
             model.cageArr[model.y][model.x] = 1;
         } else {
             model.cageArr[model.y][model.x] = 0;
@@ -62,9 +62,10 @@ var controller = {
                 if (model.cageArr[model.lowerBorderParamVerification(i)+1][model.lowerBorderParamVerification(j)+1] === 1) neighbour++;
                 if (model.cageArr[model.lowerBorderParamVerification(i)+1][model.upperBorderParamVerification(j)-1] === 1) neighbour++;
                 if (model.cageArr[model.upperBorderParamVerification(i)-1][model.upperBorderParamVerification(j)-1] === 1) neighbour++;
-                if (neighbour === 2 || neighbour === 3) model.cageArrStartGame[i][j] = 1;
-                if (neighbour < 2 && neighbour > 3) model.cageArrStartGame[i][j] = 0;
+                if (neighbour == 2 || neighbour == 3) model.cageArrStartGame[i][j] = 1;
+                if(neighbour < 2 || neighbour > 3) model.cageArrStartGame[i][j] = 0;
             }
+            console.log(neighbour);
         }
         model.cageArr = model.cageArrStartGame;
         view.drawPlayMap();
